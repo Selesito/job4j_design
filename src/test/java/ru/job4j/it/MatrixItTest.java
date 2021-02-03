@@ -90,4 +90,11 @@ public class MatrixItTest {
         MatrixIt it = new MatrixIt(in);
         assertThat(it.hasNext(), is(false));
     }
+
+    @Test
+    public void whenNoElementsNull() {
+        int[][] in = {};
+        MatrixIt it = new MatrixIt(in);
+        assertThat(it.hasNext(), is(false));
+    }
 }
