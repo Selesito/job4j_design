@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
-    private Object[] container = new Object[1];
+    private Object[] container = new Object[10];
     private int size = 0;
     private int modCount = 0;
 
@@ -19,7 +19,6 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public Object get(int index) {
         checkIndex(index);
-        modCount++;
         return container[index];
     }
 
