@@ -37,7 +37,7 @@ public class ContainerLinked<E> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            Node<E> temp = node;
+            private Node<E> temp = node;
             private int expectedModCount = modCount;
 
             @Override
@@ -58,5 +58,17 @@ public class ContainerLinked<E> implements Iterable<E> {
                 return result.item;
             }
         };
+    }
+
+    private static class Node<E> {
+        private E item;
+        private Node<E> next;
+        private Node<E> prev;
+
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
     }
 }
