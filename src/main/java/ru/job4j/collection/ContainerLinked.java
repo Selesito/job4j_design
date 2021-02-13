@@ -22,16 +22,16 @@ public class ContainerLinked<E> implements Iterable<E> {
     }
 
     public E get(int index) {
-        Node<E> result = null;
+        Node<E> current = node;
         Objects.checkIndex(index, size);
         if (index == 0) {
-            result = (Node<E>) node.item;
+            return node.item;
         } else {
             for (int i = 0; i < index; i++) {
-                result = node.next;
+                current = current.next;
             }
+            return current.item;
         }
-        return (E) result;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ContainerLinked<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return node.next != null;
+                return temp.next != null;
             }
 
             @Override
