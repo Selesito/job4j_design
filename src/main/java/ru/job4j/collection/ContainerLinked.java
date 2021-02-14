@@ -42,7 +42,7 @@ public class ContainerLinked<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return temp.next != null;
+                return temp != null;
             }
 
             @Override
