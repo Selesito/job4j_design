@@ -26,6 +26,7 @@ public class SimpleSetTest {
         array.add("null");
         array.add("null");
         array.add("two");
+        array.add("null");
         Iterator<String> it = array.iterator();
         it.next();
         assertThat(it.next(), is("null"));
