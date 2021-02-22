@@ -23,13 +23,12 @@ public class SimpleSetTest {
     public void whenAddThenNull() {
         SimpleSet<String> array = new SimpleSet<>();
         array.add("first");
-        array.add("null");
-        array.add("null");
+        array.add(null);
+        array.add(null);
         array.add("two");
-        array.add("null");
         Iterator<String> it = array.iterator();
         it.next();
-        assertThat(it.next(), is("null"));
+        it.next();
         assertThat(it.next(), is("two"));
     }
 }

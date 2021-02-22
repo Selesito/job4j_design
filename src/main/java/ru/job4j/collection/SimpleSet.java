@@ -1,14 +1,15 @@
 package ru.job4j.collection;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleSet<T> implements Iterable<T> {
-    private SimpleArray simpleArray = new SimpleArray();
+    private SimpleArray<T> simpleArray = new SimpleArray<>();
 
     public boolean add(T value) {
         boolean result = false;
         for (Object rsl : simpleArray) {
-            if (rsl.equals(value)) {
+            if (Objects.equals(rsl, value)) {
                 result = true;
                 break;
             }
