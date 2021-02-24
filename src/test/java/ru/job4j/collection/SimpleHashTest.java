@@ -35,7 +35,7 @@ public class SimpleHashTest {
         map.insert("Lars1", 11);
         map.insert("Lars1", 21);
         map.insert("Lars3", 12);
-        Iterator<Map.Entry<String, Integer>> rsl = map.iterator();
+        Iterator<Hash<String, Integer>> rsl = map.iterator();
         assertThat(rsl.next().getValue(), is(11));
         assertThat(rsl.next().getValue(), is(12));
     }
