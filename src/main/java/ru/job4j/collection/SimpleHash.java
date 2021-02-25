@@ -5,6 +5,7 @@ import java.util.*;
 public class SimpleHash<K, V> implements Iterable<Hash<K, V>> {
     private int size = 16;
     private int count = 0;
+    private int modification = 0;
     private Hash<K, V>[] hash = new Hash[size];
 
     private void checkLoad() {
@@ -22,7 +23,6 @@ public class SimpleHash<K, V> implements Iterable<Hash<K, V>> {
             }
         }
         this.hash = temp;
-        count++;
     }
 
     private int checkHash(K key) {
@@ -37,6 +37,7 @@ public class SimpleHash<K, V> implements Iterable<Hash<K, V>> {
         }
         hash[index] = new Hash<K, V>(key, value);
         count++;
+        modification++;
         return true;
     }
 
@@ -55,6 +56,7 @@ public class SimpleHash<K, V> implements Iterable<Hash<K, V>> {
         }
         hash[index] = null;
         count--;
+        modification++;
         return true;
     }
 
@@ -62,7 +64,7 @@ public class SimpleHash<K, V> implements Iterable<Hash<K, V>> {
     public Iterator<Hash<K, V>> iterator() {
         return new Iterator<Hash<K, V>>() {
             private int index = 0;
-            private int expectedModCount = count;
+            private int expectedModCount = modification;
             @Override
             public boolean hasNext() {
                 if (this.expectedModCount != count) {

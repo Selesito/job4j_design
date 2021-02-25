@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -37,6 +38,18 @@ public class SimpleHashTest {
         map.insert("Lars3", 12);
         Iterator<Hash<String, Integer>> rsl = map.iterator();
         assertThat(rsl.next().getValue(), is(11));
+        assertThat(rsl.next().getValue(), is(12));
+    }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void testMapIterator22() {
+        SimpleHash<String, Integer> map = new SimpleHash<>();
+        map.insert("Lars1", 11);
+        map.insert("Lars1", 21);
+        map.insert("Lars3", 12);
+        Iterator<Hash<String, Integer>> rsl = map.iterator();
+        assertThat(rsl.next().getValue(), is(11));
+        map.delete("Lars1");
         assertThat(rsl.next().getValue(), is(12));
     }
 }
