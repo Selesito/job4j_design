@@ -19,7 +19,11 @@ public class Config {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
                 if (!line.contains("#") && line.contains("=")) {
                     String[] rsl = line.trim().split("=");
-                    values.put(rsl[0], rsl[1]);
+                    if (rsl.length == 2) {
+                        values.put(rsl[0], rsl[1]);
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
                 }
             }
         } catch (Exception e) {
