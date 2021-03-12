@@ -38,7 +38,9 @@ public class Search {
 
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            path.add(file);
+            if (predicate.test(file)) {
+                path.add(file);
+            }
             return CONTINUE;
         }
 
