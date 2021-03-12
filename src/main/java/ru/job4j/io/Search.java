@@ -54,4 +54,12 @@ public class Search {
             return CONTINUE;
         }
     }
+
+    public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Root folder is null. Usage java"
+                    + " -jar dir.jar ROOT_FOLDER.");
+        }
+        search(Path.of(args[0]), "java");
+    }
 }
