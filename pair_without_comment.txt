@@ -1,1 +1,6 @@
+<<<<<<< Updated upstream
 name=Petr Arsentev
+=======
+#name=V Morozov
+name=Petr Arsentev
+>>>>>>> Stashed changes

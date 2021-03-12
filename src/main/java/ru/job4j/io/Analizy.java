@@ -13,30 +13,18 @@ public class Analizy {
         boolean check = false;
         List<String> result = new ArrayList<String>();
         try (BufferedReader read = new BufferedReader(new FileReader(source))) {
+            PrintWriter out = new PrintWriter(new FileOutputStream(target));
             for (String line = read.readLine(); line != null; line = read.readLine()) {
                 String[] rsl = line.trim().split(" ");
                 if (!check && (line.contains("500") || line.contains("400"))) {
-                    result.add(rsl[1]);
+                    out.print(rsl[1] + " - ");
                     check = true;
                 } else if (check && (line.contains("200") || line.contains("300"))) {
-                    result.add(rsl[1]);
+                    out.println(rsl[1] + ";");
                     check = false;
                 }
             }
-            try (PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
-                out.write(result.toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
-            out.println("15:01:30;15:02:32");
-            out.println("15:10:30;23:12:32");
+            out.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -34,8 +34,8 @@ public class AnalizyTest {
             e.printStackTrace();
         }
         assertThat(
-                "[[10:57:01, 10:59:01, 11:01:02, 11:02:02]]",
-                is(result.toString())
+                result.toString(),
+                is("[10:57:01 - 10:59:01;\r\n11:01:02 - 11:02:02;\r\n]")
         );
     }
 
@@ -56,6 +56,6 @@ public class AnalizyTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        assertThat(rsl.toString(), is("[10:57:01, 10:59:01]"));
+        assertThat(rsl.toString(), is("10:57:01 - 10:59:01;"));
     }
 }
