@@ -6,6 +6,9 @@ import java.nio.file.Path;
 
 public class DuplicatesFinder {
     public static void main(String[] args) throws IOException {
-        Files.walkFileTree(Path.of("./"), new DuplicatesVisitor());
+        if (args[0] == null || args[0].isEmpty()) {
+            throw new IllegalArgumentException("not argument");
+        }
+        Files.walkFileTree(Path.of(args[0]), new DuplicatesVisitor());
     }
 }
