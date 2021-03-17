@@ -60,6 +60,6 @@ public class Search {
             throw new IllegalArgumentException("Root folder is null. Usage java"
                     + " -jar dir.jar ROOT_FOLDER.");
         }
-        search(Path.of(args[0]), "java");
+        search(Path.of(args[0]), args[1]);
     }
 }
