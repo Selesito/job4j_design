@@ -23,30 +23,30 @@ public class ConsoleChat {
     public void run() {
         Scanner in = new Scanner(System.in);
         String message = in.nextLine();
-        StringBuilder text = new StringBuilder();
-        text.append(message + System.lineSeparator());
+        List<String> logs = new ArrayList<>();
+        logs.add(message);
         List<String> reading = read();
         boolean result = false;
         String bot = "";
         while (!message.equals(OUT)) {
             if (result) {
                 message = in.nextLine();
-                text.append(message + System.lineSeparator());
+                logs.add(message);
                 if (message.equals(CONTINUE)) {
                     result = false;
                 }
             } else {
                 bot = reading.get((int) (Math.random() * reading.size()));
                 System.out.println(bot);
-                text.append(bot + System.lineSeparator());
+                logs.add(bot);
                 message = in.nextLine();
-                text.append(message + System.lineSeparator());
+                logs.add(message);
                 if (message.equals(STOP)) {
                     result = true;
                 }
             }
         }
-        write(text.toString());
+        write(logs.toString());
     }
 
     private List<String> read() {
