@@ -1,16 +1,29 @@
 package ru.job4j.serialization;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
+import java.io.StringWriter;
 import java.util.Arrays;
 
+@XmlRootElement(name = "autopark")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Autopark {
-    private final String nameCompany;
-    private final int countCar;
-    private final String[] passenger;
-    private final boolean close;
-    private final Bus bus;
+    @XmlAttribute
+    private  String nameCompany;
+    @XmlAttribute
+    private  int countCar;
+    @XmlElementWrapper(name = "passengers")
+    @XmlElement(name = "passenger")
+    private  String[] passenger;
+    @XmlAttribute
+    private  boolean close;
+    @XmlElement(name = "bus")
+    private  Bus bus;
+
+    public Autopark() {
+    }
 
     public Autopark(String nameCompany, int countCar, String[] passenger, boolean close, Bus bus) {
         this.nameCompany = nameCompany;
@@ -30,14 +43,20 @@ public class Autopark {
                 + ", bus=" + bus + '}';
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JAXBException {
         final Autopark auto = new Autopark("Moroz", 30,
                 new String[] {"Петров", "Федоров"}, true, new Bus("ПАЗ"));
 
-        final Gson gson = new GsonBuilder().create();
-        String autoJson = gson.toJson(auto);
-        System.out.println(gson.toJson(autoJson));
-        final Autopark autoMod = gson.fromJson(autoJson, Autopark.class);
-        System.out.println(autoMod);
+        JAXBContext context = JAXBContext.newInstance(Autopark.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(auto, writer);
+            String result = writer.getBuffer().toString();
+            System.out.println(result);
+        } catch (Exception e) {
+
+        }
     }
 }
