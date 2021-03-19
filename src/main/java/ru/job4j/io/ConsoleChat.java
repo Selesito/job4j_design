@@ -46,7 +46,7 @@ public class ConsoleChat {
                 }
             }
         }
-        write(logs.toString());
+        write(logs);
     }
 
     private List<String> read() {
@@ -64,9 +64,12 @@ public class ConsoleChat {
         return rsl;
     }
 
-    private void write(String value) {
+    private void write(List<String> value) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(this.path))) {
-            out.write(value);
+            for (String log : value) {
+                out.write(log);
+                out.write(System.lineSeparator());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
