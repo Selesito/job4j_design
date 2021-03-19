@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<autopark nameCompany="Moroz" countCar="30">
+    <passengers>
+        <passenger>Петров</passenger>
+        <passenger>Фёдоров</passenger>
+    </passengers>
+    <autopark close="true"/>
+    <bus brand="ПАЗ"/>
+</autopark>
