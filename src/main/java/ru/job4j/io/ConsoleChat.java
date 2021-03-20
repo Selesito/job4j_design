@@ -1,9 +1,6 @@
 package ru.job4j.io;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -65,10 +62,9 @@ public class ConsoleChat {
     }
 
     private void write(List<String> value) {
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(this.path))) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(this.path))) {
             for (String log : value) {
-                out.write(log);
-                out.write(System.lineSeparator());
+                out.println(log);
             }
         } catch (Exception e) {
             e.printStackTrace();
