@@ -17,7 +17,7 @@ public class Search {
         return searcher.getPath();
     }
 
-    private static class SearchFiles implements FileVisitor<Path> {
+    public static class SearchFiles implements FileVisitor<Path> {
         private final Predicate<Path> predicate;
         private final List<Path> path;
 
