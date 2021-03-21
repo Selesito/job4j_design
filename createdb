@@ -1,0 +1,24 @@
+create table population(
+	id serial primary key,
+	country text,
+	population integer,
+	forecast varchar(255)
+)
+
+select * from population;
+
+insert into population(country, population, forecast) values('США', '3096', 'Увеличивается');
+
+select * from population;
+
+insert into population(country, population, forecast) values('Россия', '146748590', 'Убывает');
+
+select * from population;
+
+update population set population = '332278200';
+
+select * from population;
+
+delete from population;
+
+select * from population;
