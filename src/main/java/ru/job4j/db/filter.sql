@@ -50,30 +50,22 @@ insert into product(name, type_id, expired_date, price) values ('БАНАНЫ', 
 insert into product(name, type_id, expired_date, price) values ('АПЕЛЬСИНЫ', 6, date '2021-03-25', 45);
 insert into product(name, type_id, expired_date, price) values ('МАНДАРИНЫ', 6,  date '2021-04-01', 80);
 
-select s.name, ss.name from product as ss join type s on ss.type_id = s.id
-group by s.name, ss.name
-having s.name like '%СЫР%';
+select s.name, ss.name from product as ss join type s on ss.type_id = s.id where s.name like '%СЫР%';
 
-select s.name, ss.name from product as ss join type s on ss.type_id = s.id
-group by s.name, ss.name
-having ss.name like '%МОРОЖЕННОЕ%';
+select s.name, ss.name from product as ss join type s on ss.type_id = s.id where ss.name like '%МОРОЖЕННОЕ%';
 
-select name, expired_date from product
-group by name, expired_date
-having expired_date < '01.05.2021';
+select name, expired_date from product where expired_date < 'today'::timestamp  + interval '1 month';
 
-select  max(price) from product
+select * from product where price = (select max(price) from product);
 
 select s.name, count(*) from product as ss join type s on ss.type_id = s.id
 group by s.name;
 
 select s.name, ss.name from product as ss join type s on ss.type_id = s.id
-group by s.name, ss.name
-having s.name like '%СЫР%' or s.name like '%МОЛОКО%';
+where s.name like '%СЫР%' or s.name like '%МОЛОКО%';
 
 select s.name, count(*) from product as ss join type s on ss.type_id = s.id
 group by s.name
 having count(*) < 10;
 
-select s.name, ss.name from product as ss join type s on ss.type_id = s.id
-group by s.name, ss.name;
+select s.name, ss.name from product as ss join type s on ss.type_id = s.id;
