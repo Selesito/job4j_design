@@ -54,7 +54,7 @@ select s.name, ss.name from product as ss join type s on ss.type_id = s.id where
 
 select s.name, ss.name from product as ss join type s on ss.type_id = s.id where ss.name like '%МОРОЖЕННОЕ%';
 
-select name, expired_date from product where expired_date < 'today'::timestamp  + interval '1 month';
+select * from product where extract(month from expired_date) = extract(month from (current_date + interval '1 month'));
 
 select * from product where price = (select max(price) from product);
 
