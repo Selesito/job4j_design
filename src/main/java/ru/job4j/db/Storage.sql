@@ -43,8 +43,7 @@ insert into car(name, bodywork_id, engine_id, transmission_id) values ('Passat',
 select d.name as Car, t1.name as Bodywork, t2.name as Engine, t3.name as Transmission from car d left
 join bodywork t1 on d.bodywork_id = t1.id
 join engine t2 on d.engine_id = t2.id
-join transmission t3 on d.transmission_id = t3.id
-group by d.name, t1.name, t2.name, t3.name;
+join transmission t3 on d.transmission_id = t3.id;
 
 select t1.name as Bodywork from bodywork as t1 left
 join car as d on d.bodywork_id = t1.id  where d.bodywork_id is null;
