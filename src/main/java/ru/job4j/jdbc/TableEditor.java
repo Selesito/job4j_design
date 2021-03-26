@@ -24,24 +24,22 @@ public class TableEditor implements AutoCloseable {
 
     public void createTable(String tableName) {
         String sql = String.format(
-                "create table if not exists s%(%s, %s);",
-                tableName,
-                "id serial primary key",
-                "name varchar(255)"
+                "create table if not exists s%;",
+                tableName
         );
         execute(sql);
     }
 
     public void dropTable(String tableName) {
         String sql = String.format(
-                "drop table if not exists s%;"
+                "drop table if exists s%;"
         );
         execute(sql);
     }
 
     public void addColumn(String tableName, String columnName, String type) {
         String sql = String.format(
-                "ALTER table if not exists s% ADD s% s%;",
+                "ALTER table if exists s% ADD s% s%;",
                 tableName,
                 columnName,
                 type
@@ -51,7 +49,7 @@ public class TableEditor implements AutoCloseable {
 
     public void dropColumn(String tableName, String columnName) {
         String sql = String.format(
-                "ALTER table if not exists s% DROP COLUMN s%;",
+                "ALTER table if exists s% DROP COLUMN s%;",
                 tableName,
                 columnName
         );
@@ -60,7 +58,7 @@ public class TableEditor implements AutoCloseable {
 
     public void renameColumn(String tableName, String columnName, String newColumnName) {
         String sql = String.format(
-                "ALTER table if not exists s% RENAME COLUMN s% TO s%;",
+                "ALTER table if exists s% RENAME COLUMN s% TO s%;",
                 tableName,
                 columnName,
                 newColumnName
