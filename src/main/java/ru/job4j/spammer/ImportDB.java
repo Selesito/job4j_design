@@ -24,11 +24,10 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             for (String line = rd.readLine(); line != null; line = rd.readLine()) {
                 String[] rsl = line.trim().split(";");
-                if (rsl.length == 2) {
-                    users.add(new User(rsl[0], rsl[1]));
-                } else {
-                    throw new IllegalArgumentException();
+                if (rsl.length != 2) {
+                    continue;
                 }
+                users.add(new User(rsl[0], rsl[1]));
             }
         }
         return users;
